@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="header">
+    <img src="assets/logo-vicanut.png" alt="Logo Vicanut" class="logo" />
+  </div>
+
+<h1>Bienvenido Administrador</h1>
+  <h2>Selecciona un equipo para modificar</h2>
+
+  <div class="grid">
+    <button *ngFor="let team of teams" (click)="goToTeam(team.id)">
+      {{ team.name }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="task-list-container">
+  <div class="header">
+    <img src="assets/logo-vicanut.png" alt="Logo Vicanut" class="logo" />
+  </div>
+
+  <h1>Listado de tareas - {{ formattedTeamName }}</h1>
+  <h2>Fecha: {{ selectedDate | date: 'dd/MM/yyyy' }}</h2>
+
+  <div class="summary">
+    Tareas: {{ tasks.length }} ·
+    Finalizadas: {{ completedTasks.length }} ·
+    Pendientes: {{ pendingTasks.length }}
+  </div>
+
+  <div class="section">
+    <h3>Tareas pendientes</h3>
+    <div *ngIf="pendingTasks.length === 0">No hay tareas pendientes.</div>
+    <div *ngFor="let task of pendingTasks" class="task-item">
+      <input type="checkbox" [checked]="task.completed" (change)="toggleCompletion(task)" />
+      <span>{{ task.name }}</span>
+      <div class="actions">
+        <button (click)="editTask(task)">Editar</button>
+        <button (click)="deleteTask(task)">Borrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Tareas finalizadas</h3>
+    <div *ngIf="completedTasks.length === 0">No hay tareas finalizadas.</div>
+    <div *ngFor="let task of completedTasks" class="task-item completed">
+      <input type="checkbox" [checked]="task.completed" (change)="toggleCompletion(task)" />
+      <span>{{ task.name }}</span>
+      <div class="actions">
+        <button (click)="editTask(task)">Editar</button>
+        <button (click)="deleteTask(task)">Borrar</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="add-button" (click)="addNewTask()">+ Añadir nueva tarea</button>
+</div>
+

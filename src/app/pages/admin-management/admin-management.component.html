@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="header">
+    <img src="assets/logo-vicanut.png" alt="Logo Vicanut" class="logo" />
+  </div>
+
+  <h1>Administrador has seleccionado: {{ formattedTeamName }}</h1>
+  <h2>Selecciona día para gestionar</h2>
+
+  <input type="date" [(ngModel)]="selectedDate" class="date-picker" />
+
+  <div class="actions">
+    <button (click)="togglePasswordForm()">Cambiar contraseña del equipo</button>
+    <button [disabled]="!selectedDate" (click)="goToTasks()">Ver todas las tareas</button>
+  </div>
+
+
+
+  <!-- Modal flotante para cambiar contraseña -->
+  <div class="modal-backdrop" *ngIf="showPasswordForm">
+    <div class="modal">
+      <h3>Cambiar contraseña a {{ formattedTeamName }}</h3>
+      <input
+        type="text"
+        [(ngModel)]="newPassword"
+        placeholder="Nueva contraseña"
+      />
+      <div class="modal-buttons">
+        <button class="save" (click)="savePassword()">Guardar</button>
+        <button class="cancel" (click)="togglePasswordForm()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
